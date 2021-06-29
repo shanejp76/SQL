@@ -1,0 +1,32 @@
+---- Non-Uniform Data
+
+-- Examine the data for each variable:
+SELECT DISTINCT rating
+FROM film;
+
+-- If there are inconsistencies, consolidate using:
+UPDATE film
+SET rating = ‘G’
+WHERE rating IN(‘general, ‘g’, ‘General’);
+
+
+---- Duplicate data
+
+-- Identify duplicates:
+SELECT film_id, count(*)
+FROM film
+GROUP BY film_id
+HAVING COUNT(*)>1;
+
+-- If you find duplicates, create a view:
+CREATE VIEW film_id_duplicates AS
+SELECT film_id
+FROM film
+GROUP BY film_id;
+
+-- Delete the duplicates:
+DELETE
+FROM film
+WHERE unique_id NOT IN (SELECT MIN(unique_id)
+FROM film
+GROUP BY film);
