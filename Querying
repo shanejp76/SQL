@@ -1,0 +1,32 @@
+-- Select “film_id” and “title” columns:
+SELECT film_id, title 
+FROM film;
+
+---- Compare the cost of the original query and the revised query:
+-- original query
+EXPLAIN SELECT * 
+FROM film; 
+>>>Cost: 0-64. WIDTH 384
+
+-- revised query
+EXPLAIN SELECT film_id, title 
+FROM film;
+>>>Cost: 0-64. WIDTH 19
+
+-- Select every film from the “film” table, 
+-- with the movies sorted by title from A to Z, 
+-- then by most recent release year, 
+-- and then by highest to lowest rental rate.
+SELECT * 
+FROM film 
+ORDER BY title, release_year DESC, rental_rate DESC;
+
+-- Average rental rate for each rating category:
+SELECT rating, AVG(rental_rate) 
+FROM film 
+GROUP BY rating;
+
+-- Minimum and maximum rental durations for each rating category:
+SELECT rating, MIN(rental_DURATION), MAX(rental_duration) 
+FROM film 
+GROUP BY rating;
