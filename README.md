@@ -1,4 +1,4 @@
-# SQL
+# Rockbuster Stealth - SQL
 ## Files with prefix "code_" are queries.
 
 This Achievement challenged me to "learn by doing" SQL as a beginner. The fictitious movie-streaming business "Rockbuster Stealth" required that I:
